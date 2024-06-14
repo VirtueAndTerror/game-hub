@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import ms from 'ms';
 import APIClient from '../services/api-client';
 import genres from '../data/genres';
 
@@ -15,7 +16,7 @@ const useGenres = () =>
     queryKey: ['genres'],
     queryFn: apiClient.getAll,
     // Data will be fresh for 24hs, i.e., no request will be made to the backend to fetch the genres
-    staleTime: 24 * 60 * 60 * 1000, // 24hs
+    staleTime: ms('24h'),
     initialData: { count: genres.length, results: genres },
   });
 export default useGenres;

@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import APIClient from '../services/api-client';
 import platforms from '../data/platforms';
+import ms from 'ms';
 
 export interface Platform {
   id: number;
@@ -14,7 +15,7 @@ const usePlatforms = () =>
     queryKey: ['platforms'],
     queryFn: apiClient.getAll,
     // Data will be fresh for 24hs, i.e., no request will be made to the backend to fetch the genres
-    staleTime: 24 * 60 * 60 * 1000, // 24hs
+    staleTime: ms('24h'),
     initialData: { count: platforms.length, results: platforms },
   });
 
