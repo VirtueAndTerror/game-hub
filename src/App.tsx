@@ -1,19 +1,14 @@
+import { Box, Grid, GridItem, HStack, Show } from '@chakra-ui/react';
 import { useState } from 'react';
-import { Grid, GridItem, HStack, Show, Box } from '@chakra-ui/react';
-// Components
-import NavBar from './components/NavBar';
-import GameGrid from './components/GameGrid';
-import GenreList from './components/GenreList';
-import PlatformSelector from './components/PlatformSelector';
-import GameHeading from './components/GameHeading';
-import SortSelector from './components/SortSelector';
+import { GameQuery } from './store';
 
-export interface GameQuery {
-  genreId?: number;
-  platformId?: number;
-  sortOrder: string;
-  searchText: string;
-}
+// Components
+import GameGrid from './components/GameGrid';
+import GameHeading from './components/GameHeading';
+import GenreList from './components/GenreList';
+import NavBar from './components/NavBar';
+import PlatformSelector from './components/PlatformSelector';
+import SortSelector from './components/SortSelector';
 
 function App() {
   // QueryObject Pattern
@@ -57,7 +52,7 @@ function App() {
               }
             />
             <SortSelector
-              sortOrder={gameQuery.sortOrder}
+              sortOrder={gameQuery.sortOrder || ''}
               onSelectSortOrder={(sortOrder) =>
                 setGameQuery({ ...gameQuery, sortOrder })
               }
